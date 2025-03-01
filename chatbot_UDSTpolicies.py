@@ -83,6 +83,12 @@ st.markdown(
     body, h1, h2, h3, h4, h5, h6, p, a, .stMarkdown, .stTextInput, .stButton, .stSpinner {
         color: black !important;
     }
+
+    /* Ensure the background is light */
+    .stApp {
+        background-color: #ffffff !important;
+    }
+
     /* Remove hyperlink underline */
     a {
         text-decoration: none;
@@ -90,6 +96,7 @@ st.markdown(
     a:hover {
         text-decoration: underline;
     }
+
     /* Button styling */
     .stButton button {
         background-color: #2e86c1;
@@ -98,6 +105,7 @@ st.markdown(
         border-radius: 5px;
         padding: 10px 20px;
     }
+
     /* Input field styling */
     .stTextInput input {
         border-radius: 5px;
@@ -158,6 +166,6 @@ if st.button("Submit"):
             response = generate_response(prompt)
         
         st.subheader("Response:")
-        st.write(response)
+        st.write(response)  # This text will be black
     else:
         st.warning("Please enter a question.")
