@@ -76,6 +76,7 @@ def generate_response(prompt):
 st.set_page_config(page_title="UDST RAG Chatbot", page_icon="📚", layout="centered")
 
 # Custom CSS for a more beautiful design
+# Custom CSS for a more beautiful design
 st.markdown(
     """
     <style>
@@ -84,9 +85,10 @@ st.markdown(
         color: black !important;
     }
 
-    /* Ensure the background is light with a gradient */
+    /* Ensure the background has a beautiful gradient */
     .stApp {
-        background: linear-gradient(135deg, #f5f7fa, #c3cfe2) !important;
+        background: linear-gradient(135deg, #ff9a9e, #fbc2eb, #a6c1ee) !important;
+        background-size: 200% 200%;
         animation: gradientAnimation 10s ease infinite;
     }
 
@@ -168,18 +170,6 @@ st.markdown(
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    /* Spinner styling */
-    .stSpinner {
-        color: #2e86c1 !important;
-        animation: spin 1s linear infinite;
-    }
-
-    /* Spinner animation */
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
     /* Response box styling */
     .stTextArea textarea {
         border-radius: 15px;
@@ -200,7 +190,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
 # Title and description
 st.title("RAG Chatbot for UDST Policies!")
 st.markdown("Welcome to the UDST Policy RAG Chatbot! Ask any questions about UDST policies here!.")
