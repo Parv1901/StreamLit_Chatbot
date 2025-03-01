@@ -75,7 +75,7 @@ def generate_response(prompt):
 # --- Streamlit UI ---
 st.set_page_config(page_title="UDST RAG Chatbot", page_icon="📚", layout="centered")
 
-# Custom CSS for creative design
+# Custom CSS for a more beautiful design
 st.markdown(
     """
     <style>
@@ -87,6 +87,14 @@ st.markdown(
     /* Ensure the background is light with a gradient */
     .stApp {
         background: linear-gradient(135deg, #f5f7fa, #c3cfe2) !important;
+        animation: gradientAnimation 10s ease infinite;
+    }
+
+    /* Gradient animation */
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
 
     /* Header styling */
@@ -96,6 +104,7 @@ st.markdown(
         font-size: 2.5rem;
         text-align: center;
         margin-bottom: 20px;
+        animation: fadeIn 2s ease-in-out;
     }
 
     /* Subheader styling */
@@ -104,6 +113,19 @@ st.markdown(
         font-family: 'Arial', sans-serif;
         font-size: 1.8rem;
         margin-top: 20px;
+        animation: slideIn 1.5s ease-in-out;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    /* Slide-in animation */
+    @keyframes slideIn {
+        0% { transform: translateX(-100%); opacity: 0; }
+        100% { transform: translateX(0); opacity: 1; }
     }
 
     /* Hyperlink styling */
@@ -111,8 +133,10 @@ st.markdown(
         color: #2e86c1 !important;
         text-decoration: none;
         font-weight: bold;
+        transition: color 0.3s ease;
     }
     a:hover {
+        color: #1a5276 !important;
         text-decoration: underline;
     }
 
@@ -125,10 +149,11 @@ st.markdown(
         padding: 10px 20px;
         border: none;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease;
     }
     .stButton button:hover {
         background-color: #1a5276 !important;
+        transform: scale(1.05);
     }
 
     /* Input field styling */
@@ -137,11 +162,22 @@ st.markdown(
         padding: 10px;
         border: 1px solid #2e86c1;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+    .stTextInput input:focus {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     /* Spinner styling */
     .stSpinner {
         color: #2e86c1 !important;
+        animation: spin 1s linear infinite;
+    }
+
+    /* Spinner animation */
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 
     /* Response box styling */
@@ -150,6 +186,15 @@ st.markdown(
         padding: 15px;
         border: 1px solid #2e86c1;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+    .stTextArea textarea:focus {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Add some padding and spacing */
+    .stMarkdown, .stTextInput, .stButton, .stSpinner, .stTextArea {
+        margin-bottom: 20px;
     }
     </style>
     """,
@@ -157,11 +202,11 @@ st.markdown(
 )
 
 # Title and description
-st.title("UDST RAG Chatbot")
-st.markdown("Welcome to the UDST Policy Chatbot! Ask questions about UDST policies, and get instant answers.")
+st.title("RAG Chatbot for UDST Policies!")
+st.markdown("Welcome to the UDST Policy RAG Chatbot! Ask any questions about UDST policies here!.")
 
 # List of policies with hyperlinks
-st.subheader("Available Policies:")
+st.subheader("Available Policies / The 10 policies the chatbot will answer questions about:")
 policies = {
     "Graduation Policy": "https://www.udst.edu.qa/about-udst/institutional-excellence-ie/udst-policies-and-procedures/graduation-policy",
     "Graduate Admissions Policy": "https://www.udst.edu.qa/about-udst/institutional-excellence-ie/policies-and-procedures/graduate-admissions-policy",
@@ -180,7 +225,7 @@ for policy, url in policies.items():
     st.markdown(f"- [{policy}]({url})", unsafe_allow_html=True)
 
 # Text input for user query
-question = st.text_input("Ask a question about UDST policies:")
+question = st.text_input("Ask a Question:")
 
 # Button to submit query
 if st.button("Submit"):
