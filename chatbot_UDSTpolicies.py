@@ -79,15 +79,18 @@ st.set_page_config(page_title="UDST RAG Chatbot", page_icon="📚", layout="cent
 st.markdown(
     """
     <style>
-    .stApp {
-        background-color: #f0f2f6;
+    /* Set all text to black */
+    body, h1, h2, h3, h4, h5, h6, p, a, .stMarkdown, .stTextInput, .stButton, .stSpinner {
+        color: black !important;
     }
-    .stMarkdown h1 {
-        color: #2e86c1;
+    /* Remove hyperlink underline */
+    a {
+        text-decoration: none;
     }
-    .stMarkdown h2 {
-        color: #1a5276;
+    a:hover {
+        text-decoration: underline;
     }
+    /* Button styling */
     .stButton button {
         background-color: #2e86c1;
         color: white;
@@ -95,16 +98,10 @@ st.markdown(
         border-radius: 5px;
         padding: 10px 20px;
     }
+    /* Input field styling */
     .stTextInput input {
         border-radius: 5px;
         padding: 10px;
-    }
-    .stMarkdown a {
-        color: #2e86c1;
-        text-decoration: none;
-    }
-    .stMarkdown a:hover {
-        text-decoration: underline;
     }
     </style>
     """,
